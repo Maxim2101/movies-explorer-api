@@ -61,8 +61,13 @@ const deleteMovie = (req, res, next) => {
       }
       throw new ForbiddenError('Ошибка, не возможно удалить чужой фильм');
     })
-    .catch(() => { throw new NotFoundError('Ошибка, данный фильм не найден'); })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        next(new NotFoundError('Ошибка, данный фильм не найден'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports = {
