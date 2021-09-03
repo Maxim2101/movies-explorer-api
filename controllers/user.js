@@ -47,6 +47,7 @@ const login = (req, res, next) => {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
           sameSite: true,
+          secure: true,
         }).send({ token });
     })
     .catch(() => next(new UnAuthorizedError('Ошибка, проверьте email/password')));
