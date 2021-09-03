@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 const {
   MONGO_URL = 'mongodb://localhost:27017/moviesdb', PORT = 3000,
